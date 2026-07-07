@@ -1,0 +1,37 @@
+# Node
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Python venv
+venv/
+ENV/
+env/
+.venv/
+bin/
+include/
+lib/
+share/
+pyvenv.cfg
+pip-selfcheck.json
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# IDE and OS files
+.DS_Store
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Local environment variables
+.env
+.env.production
+.env.development

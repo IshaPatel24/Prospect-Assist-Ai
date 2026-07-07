@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── CSS Variables ───────────────────────────────────────── */
+:root {
+  --navy:      #0A2342;
+  --navy-light:#0F2E52;
+  --teal:      #028090;
+  --teal-dark: #026d7a;
+  --mint:      #02C39A;
+  --mint-light:#04D9AA;
+  --orange:    #F58220;
+  --orange-dark:#D66D14;
+  --orange-light:#FF9E40;
+  --white:     #FFFFFF;
+  --offwhite:  #F4F7FA;
+  --gray:      #64748B;
+  --light:     #EBF5F8;
+  --sidebar-w: 240px;
+
+  /* Glassmorphism */
+  --glass-bg: rgba(255,255,255,0.08);
+  --glass-border: rgba(255,255,255,0.15);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(10,35,66,0.08), 0 1px 2px rgba(10,35,66,0.06);
+  --shadow-md: 0 4px 16px rgba(10,35,66,0.10), 0 2px 6px rgba(10,35,66,0.06);
+  --shadow-lg: 0 12px 32px rgba(10,35,66,0.14), 0 4px 12px rgba(10,35,66,0.08);
+  --shadow-xl: 0 24px 64px rgba(10,35,66,0.20), 0 8px 24px rgba(10,35,66,0.10);
+}
+
+/* ── Base ─────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  background: var(--offwhite);
+  color: var(--navy);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+}
+
+/* ── Scrollbar ────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(2,128,144,0.25); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(2,128,144,0.5); }
+
+/* ── Animations ───────────────────────────────────────────── */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes spin-smooth {
+  to { transform: rotate(360deg); }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(2,195,154,0.4); }
+  50%       { box-shadow: 0 0 0 8px rgba(2,195,154,0); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes count-up {
+  from { opacity: 0; transform: scale(0.85); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.animate-fade-in      { animation: fade-in 0.4s ease both; }
+.animate-slide-left   { animation: slide-in-left 0.35s ease both; }
+.animate-count-up     { animation: count-up 0.5s cubic-bezier(0.34,1.56,0.64,1) both; }
+.animate-pulse-glow   { animation: pulse-glow 2s infinite; }
+
+/* Stagger children */
+.stagger > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger > *:nth-child(2) { animation-delay: 0.10s; }
+.stagger > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger > *:nth-child(4) { animation-delay: 0.20s; }
+.stagger > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger > *:nth-child(6) { animation-delay: 0.30s; }
+
+/* ── Skeleton Loader ──────────────────────────────────────── */
+.skeleton {
+  background: linear-gradient(90deg, #e8edf2 25%, #f4f7fa 50%, #e8edf2 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+
+/* ── Card ─────────────────────────────────────────────────── */
+.card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(10,35,66,0.06);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.card:hover { box-shadow: var(--shadow-md); }
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ── Badge ────────────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+/* ── Button ───────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #028090, #02a0b0);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(2,128,144,0.35);
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, #026d7a, #028090);
+  box-shadow: 0 4px 16px rgba(2,128,144,0.45);
+  transform: translateY(-1px);
+}
+.btn-primary:active { transform: translateY(0); }
+
+/* ── Input ────────────────────────────────────────────────── */
+.input-field {
+  width: 100%;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 14px;
+  color: var(--navy);
+  background: white;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  font-family: inherit;
+}
+.input-field:focus {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(2,128,144,0.12);
+}
+.input-field::placeholder { color: #94A3B8; }
+
+/* ── Sidebar Active State ─────────────────────────────────── */
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 10px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.65);
+  text-decoration: none;
+  transition: all 0.18s ease;
+  cursor: pointer;
+}
+.nav-item:hover {
+  background: rgba(255,255,255,0.08);
+  color: white;
+}
+.nav-item.active {
+  background: linear-gradient(135deg, rgba(2,128,144,0.9), rgba(2,160,176,0.8));
+  color: white;
+  box-shadow: 0 2px 12px rgba(2,128,144,0.4);
+}
+
+/* ── Score Bar ────────────────────────────────────────────── */
+.score-bar { height: 4px; border-radius: 99px; background: #E2E8F0; overflow: hidden; }
+.score-bar-fill { height: 100%; border-radius: 99px; transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1); }
+
+/* ── Table Row ────────────────────────────────────────────── */
+.table-row {
+  transition: background 0.15s ease;
+}
+.table-row:hover { background: rgba(2,128,144,0.04); }
+
+/* ── Stat Card Gradient Icons ─────────────────────────────── */
+.icon-blue   { background: linear-gradient(135deg,#EFF6FF,#DBEAFE); color: #2563EB; }
+.icon-green  { background: linear-gradient(135deg,#F0FDF4,#DCFCE7); color: #16A34A; }
+.icon-teal   { background: linear-gradient(135deg,#F0FDFA,#CCFBF1); color: #0D9488; }
+.icon-purple { background: linear-gradient(135deg,#FAF5FF,#EDE9FE); color: #7C3AED; }
+.icon-orange { background: linear-gradient(135deg,#FFF7ED,#FFEDD5); color: #EA580C; }
+.icon-pink   { background: linear-gradient(135deg,#FFF1F2,#FFE4E6); color: #E11D48; }
+
+/* ── Gradient text ────────────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, #028090, #02C39A);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Glass panel ──────────────────────────────────────────── */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 768px) {
+  :root { --sidebar-w: 0px; }
+}
